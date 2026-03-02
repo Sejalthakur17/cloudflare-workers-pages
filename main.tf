@@ -26,8 +26,8 @@ resource "cloudflare_pages_project" "frontend" {
   }
 
   build_config {
-    build_command   = ""
-    destination_dir = "."
     root_dir        = "frontend"
+    build_command   = null
+    destination_dir = null
   }
 }
