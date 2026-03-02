@@ -1,11 +1,11 @@
+resource "cloudflare_workers_subdomain" "default" {
+  account_id = var.account_id
+  subdomain  = "sejalthakur016"
+}
 resource "cloudflare_workers_script" "backend" {
   account_id = var.account_id
   name       = "sejal-backend-worker"
   content    = file("${path.module}/worker/index.js")
-
-  lifecycle {
-    ignore_changes = [content]
-  }
 }
 
 resource "cloudflare_pages_project" "frontend" {
@@ -26,7 +26,7 @@ resource "cloudflare_pages_project" "frontend" {
   }
 
   build_config {
-    root_dir        = "frontend"
+    root_dir        = "pages"
     build_command   = null
     destination_dir = null
   }
