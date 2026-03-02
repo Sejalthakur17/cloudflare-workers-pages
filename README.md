@@ -63,8 +63,11 @@ cd sejal-cloudflare-workers-pages
 Edit terraform.tfvars:
 
 cloudflare_api_token = "YOUR_TOKEN"
+
 account_id           = "YOUR_ACCOUNT_ID"
+
 github_owner         = "YOUR_GITHUB_USERNAME"
+
 github_repo          = "YOUR_REPO_NAME"
 
 3. Initialize Terraform :
