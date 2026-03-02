@@ -17,15 +17,17 @@ resource "cloudflare_pages_project" "frontend" {
     type = "github"
 
     config {
-      owner             = var.github_owner
-      repo_name         = var.github_repo
-      production_branch = "main"
-      deployments_enabled = true
+      owner                         = var.github_owner
+      repo_name                     = var.github_repo
+      production_branch             = "main"
+      deployments_enabled           = true
+      production_deployment_enabled = true
     }
   }
 
   build_config {
     build_command   = ""
-    destination_dir = "frontend"
+    destination_dir = "."
+    root_dir        = "frontend"
   }
 }
