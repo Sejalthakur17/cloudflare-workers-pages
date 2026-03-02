@@ -3,7 +3,7 @@ addEventListener("fetch", event => {
 });
 
 async function handleRequest(request) {
-  return new Response("Hello from Sejal Backend 🚀", {
+  return new Response("Hello from Sejal Backend ", {
     headers: { "Content-Type": "text/plain" },
   });
 }
