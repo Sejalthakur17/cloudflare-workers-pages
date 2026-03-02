@@ -26,17 +26,21 @@ Cloudflare Pages
 GitHub
 
 ## Project Structure
-
+```
+project-root/
+│
 ├── main.tf
 ├── provider.tf
 ├── variables.tf
 ├── outputs.tf
 ├── terraform.tfvars
+│
 ├── worker/
 │   └── index.js
-├── frontend/
-│   └── index.html
-
+│
+└── frontend/
+    └── index.html
+```
 ## Prerequisites
 
 Terraform installed
@@ -51,6 +55,7 @@ GitHub repository
 1. Clone Repository :
 
 git clone https://github.com/Sejalthakur17/sejal-cloudflare-workers-pages.git
+
 cd sejal-cloudflare-workers-pages
 
 2. Configure Variables
