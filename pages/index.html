@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sejal Cloudflare Project</title>
+  <meta charset="UTF-8">
+  <title>Cloudflare Pages Deployment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #f38020;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .info {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #eef2f7;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <h1>Frontend Deployed on Cloudflare Pages </h1>
 
-  <button onclick="callAPI()">Call Backend</button>
+  <div class="container">
+    <h1>Cloudflare Pages Deployment Successful 🚀</h1>
 
-  <p id="result"></p>
+    <p>
+      This frontend application is deployed using <strong>Cloudflare Pages</strong>
+      and provisioned via <strong>Terraform</strong>.
+    </p>
 
-  <script>
-    async function callAPI() {
-      try {
-        const res = await fetch("https://sejal-backend-worker.sejalthakur016.workers.dev");
-        const text = await res.text();
-        document.getElementById("result").innerText = text;
-      } catch (error) {
-        document.getElementById("result").innerText = "Error calling backend";
-      }
-    }
-  </script>
+    <div class="info">
+      <p><strong>Project Overview:</strong></p>
+      <p>✔ Infrastructure provisioned using Terraform</p>
+      <p>✔ Backend deployed on Cloudflare Workers</p>
+      <p>✔ Frontend deployed on Cloudflare Pages</p>
+      <p>✔ GitHub integrated for automatic deployment</p>
+    </div>
+
+    <div class="footer">
+      <p>Deployed as part of Cloudflare Workers & Pages Terraform project.</p>
+    </div>
+  </div>
 
 </body>
 </html>
