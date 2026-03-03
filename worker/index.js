@@ -17,6 +17,12 @@ async function handleRequest(request) {
   // Business logic route
   if (url.pathname === "/calculate" && request.method === "POST") {
     const body = await request.json();
+        
+  if (url.pathname === "/" && request.method === "GET") {
+  return jsonResponse({
+    message: "Cloudflare Worker API is running "
+  });
+}
 
     if (!body.number) {
       return jsonResponse({ error: "Number is required" }, 400);
