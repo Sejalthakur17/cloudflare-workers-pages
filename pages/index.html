@@ -2,71 +2,62 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Cloudflare Pages Deployment</title>
+  <title>Cloudflare Full Stack Demo</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 40px;
+      font-family: Arial;
       text-align: center;
+      margin-top: 50px;
+      background-color: #f4f6f8;
     }
 
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      margin: auto;
+    input {
+      padding: 8px;
+      font-size: 16px;
     }
 
-    h1 {
-      color: #f38020;
+    button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    p {
-      color: #333;
-      line-height: 1.6;
-    }
-
-    .info {
+    #result {
       margin-top: 20px;
-      padding: 15px;
-      background-color: #eef2f7;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #777;
+      font-size: 18px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Cloudflare Pages Deployment Successful</h1>
+  <h1>Cloudflare Full Stack App 🚀</h1>
+  <p>Enter a number. Backend will multiply it by 5.</p>
 
-    <p>
-      This frontend application is deployed using <strong>Cloudflare Pages</strong>
-      and provisioned via <strong>Terraform</strong>.
-    </p>
+  <input type="number" id="numberInput" placeholder="Enter a number" />
+  <button onclick="calculate()">Calculate</button>
 
-    <div class="info">
-      <p><strong>Project Overview:</strong></p>
-      <p>✔ Infrastructure provisioned using Terraform</p>
-      <p>✔ Backend deployed on Cloudflare Workers</p>
-      <p>✔ Frontend deployed on Cloudflare Pages</p>
-      <p>✔ GitHub integrated for automatic deployment</p>
-    </div>
+  <div id="result"></div>
 
-    <div class="footer">
-      <p>Deployed as part of Cloudflare Workers & Pages Terraform project.</p>
-    </div>
-  </div>
+  <script>
+    async function calculate() {
+      const number = document.getElementById("numberInput").value;
+
+      const res = await fetch("https://sejal-backend-worker.sejalthakur016.workers.dev", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ number: Number(number) })
+      });
+
+      const data = await res.json();
+
+      document.getElementById("result").innerText =
+        "Result: " + data.output;
+    }
+  </script>
 
 </body>
 </html>
