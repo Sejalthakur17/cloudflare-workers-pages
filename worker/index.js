@@ -3,38 +3,20 @@ addEventListener("fetch", event => {
 });
 
 async function handleRequest(request) {
-  const url = new URL(request.url);
+  const url = new URL(request.url);  
 
   if (request.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders() });
   }
 
-  // Health check route
-  if (url.pathname === "/health" && request.method === "GET") {
-    return jsonResponse({ status: "API is running 🚀" });
+  if (url.pathname === "/" && request.method === "GET") {
+    return jsonResponse({
+      message: "Cloudflare Worker API is running successfully!"
+    });
   }
 
-  // Business logic route
-  if (url.pathname === "/calculate" && request.method === "POST") {
-    const body = await request.json();
-        
-  if (url.pathname === "/" && request.method === "GET") {
-  return jsonResponse({
-    message: "Cloudflare Worker API is running "
-  });
-}
-
-    if (!body.number) {
-      return jsonResponse({ error: "Number is required" }, 400);
-    }
-
-    const result = body.number * 5;
-
-    return jsonResponse({
-      input: body.number,
-      output: result,
-      timestamp: new Date().toISOString()
-    });
+  if (url.pathname === "/health" && request.method === "GET") {
+    return jsonResponse({ status: "API is running " });
   }
 
   return new Response("Not Found", { status: 404 });
