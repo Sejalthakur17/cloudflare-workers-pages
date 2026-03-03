@@ -3,37 +3,45 @@ addEventListener("fetch", event => {
 });
 
 async function handleRequest(request) {
+  const url = new URL(request.url);
 
-  // Handle CORS preflight
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      headers: corsHeaders()
+    return new Response(null, { headers: corsHeaders() });
+  }
+
+  // Health check route
+  if (url.pathname === "/health" && request.method === "GET") {
+    return jsonResponse({ status: "API is running 🚀" });
+  }
+
+  // Business logic route
+  if (url.pathname === "/calculate" && request.method === "POST") {
+    const body = await request.json();
+
+    if (!body.number) {
+      return jsonResponse({ error: "Number is required" }, 400);
+    }
+
+    const result = body.number * 5;
+
+    return jsonResponse({
+      input: body.number,
+      output: result,
+      timestamp: new Date().toISOString()
     });
   }
 
-  if (request.method === "POST") {
-    const body = await request.json();
+  return new Response("Not Found", { status: 404 });
+}
 
-    // Business Logic
-    const number = body.number;
-    const result = number * 5;
-
-    return new Response(
-      JSON.stringify({
-        input: number,
-        output: result,
-        message: "Calculation successful"
-      }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          ...corsHeaders()
-        }
-      }
-    );
-  }
-
-  return new Response("Method Not Allowed", { status: 405 });
+function jsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      ...corsHeaders()
+    }
+  });
 }
 
 function corsHeaders() {
