@@ -90,4 +90,5 @@ Pages URL: https://<project-name>.pages.dev
 
 ## Loom Video
 
-Loom link: (Add your Loom video here)
+Loom link: https://www.loom.com/share/80054156c9b149c285e139dd54517471
+
